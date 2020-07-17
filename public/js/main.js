@@ -4,7 +4,9 @@ document.querySelectorAll('.btn-update').forEach((b)=>{
 
         fetch('/users', {
             method: 'put',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
                 id: e.target.dataset.id,
                 name: 'Jane',
@@ -13,12 +15,33 @@ document.querySelectorAll('.btn-update').forEach((b)=>{
         })
             .then(res => {
                 if(res.ok){
-                    window.location.reload()
-                    // return res.json()
+                    return res.json()
                 }
             })
             .then(res => {
-                console.log(res)
+                window.location.reload()
+            })
+    })
+})
+
+document.querySelectorAll('.btn-delete').forEach((b)=>{
+
+    b.addEventListener('click', (e)=>{
+        fetch('/users', {
+            method: 'delete',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: e.target.dataset.id
+            })
+        })
+            .then(res => {
+                if(res.ok) return res.json()
+            })
+            .then(res => {
+                // console.log(res)
+                window.location.reload()
             })
     })
 })

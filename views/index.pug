@@ -29,7 +29,7 @@ body
                 .form-group
                     button.btn.btn-primary(type='submit') Submit
 
-        .col-sm-4
+        .col-sm-6
             hr
 
             if users.length > 0
@@ -38,7 +38,9 @@ body
                     each u in users
                         li= u.name + ` - `
                             a(href='mailto:' + u.email)= u.email
-                            button.btn-update.btn.btn-xs.btn-danger.pull-right(data-id=u._id) Update
+                            span.pull-right
+                                button.btn-update.btn.btn-xs.btn-warning(data-id=u._id) Update
+                                button.btn-delete.btn.btn-xs.btn-danger(data-id=u._id) X
             else
                 .alert.alert-info No users found
 

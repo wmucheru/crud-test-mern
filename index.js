@@ -74,3 +74,15 @@ app.put('/users', (req, res)=>{
             console.log(err)
         })
 })
+
+app.delete('/users', (req, res) => {
+    db.collection('users').deleteOne(
+        { _id: ObjectId(req.body.id) }
+    )
+        .then(response => {
+            res.json(response)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+})
