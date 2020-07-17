@@ -4,6 +4,7 @@ head
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title CRUD Express
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet')
+    link(href='/css/style.css' rel='stylesheet')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     // WARNING: Respond.js doesn't work if you view the page via file://
     //if lt IE 9
@@ -19,26 +20,28 @@ body
             form.form-horizontal.col-sm-4(action='/register' method='POST')
                 .form-group
                     label Name
-                    input.form-control(type='text' name='name' value='John')
+                    input.form-control(type='text' name='name' required autofocus)
 
                 .form-group
                     label Email
-                    input.form-control(type='email' name='email' value='john@doe.com')
+                    input.form-control(type='email' name='email' required)
 
                 .form-group
                     button.btn.btn-primary(type='submit') Submit
 
-        .clearfix
+        .col-sm-4
             hr
 
             if users.length > 0
                 h2 Users
-                ul
+                ol
                     each u in users
-                        li= u.name + ' - '
+                        li= u.name + ` - `
                             a(href='mailto:' + u.email)= u.email
+                            button.btn-update.btn.btn-xs.btn-danger.pull-right(data-id=u._id) Update
             else
                 .alert.alert-info No users found
 
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
 script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+script(src='/js/main.js')

@@ -1,5 +1,7 @@
 const express = require('express')
+const path = require('path')
 const bodyParser = require('body-parser')
+const { ObjectId } = require('mongodb')
 const MongoClient = require('mongodb').MongoClient
 
 const app = express()
@@ -19,6 +21,8 @@ MongoClient.connect('mongodb://localhost:27017', {
 
 // Apply middleware
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.set('view engine', 'pug')
 
@@ -30,7 +34,6 @@ app.get('/', (req, res)=>{
 
     db.collection('users').find().toArray()
         .then(result => {
-            console.log(result)
             res.render('index', {users:result})
         })
 })
@@ -38,14 +41,36 @@ app.get('/', (req, res)=>{
 app.post('/register', (req, res)=>{
     console.log(req.body)
 
-    const usersCollection = db.collection('users')
-
-    usersCollection.insertOne(req.body)
+    db.collection('users').insertOne(req.body)
         .then(result => {
             console.log('User added!')
             res.redirect('/')
         })
         .catch(error => {
             console.log('Error adding user!')
+        })
+})
+
+app.put('/users', (req, res)=>{
+    const name = req.body.name
+    const email = req.body.email
+
+    db.collection('users').findOneAndUpdate(
+        { _id: ObjectId(req.body.id) },
+        {
+            $set: {
+                name,
+                email
+            }
+        },
+        {
+            upsert: false
+        }
+    )
+        .then(result => {
+            res.json({message:result})
+        })
+        .catch(err => {
+            console.log(err)
         })
 })
