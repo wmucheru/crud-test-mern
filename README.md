@@ -7,7 +7,13 @@
 - Bootstrap 3
 
 
+### TODO
+
+- Replace `MongoClient` with `Mongoose`
+- Apply auth middleware
+
 ### Links
 - https://zellwk.com/blog/crud-express-mongodb/
 - https://zellwk.com/blog/express-middlewares/
+- https://www.tutorialspoint.com/expressjs/expressjs_authentication.htm
 - https://scotch.io/tutorials/use-ejs-to-template-your-node-application
