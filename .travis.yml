@@ -1,6 +1,12 @@
 language: node_js
 node_js: 
   - "10"
+
+sudo: required
+services: mongodb
+
+before_script: npm run dev
+
 cache:
   directories
     - "node_modules"

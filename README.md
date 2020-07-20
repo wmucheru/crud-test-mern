@@ -1,5 +1,7 @@
 ## Express CRUD sample app
 
+![travis status](https://travis-ci.org/wmucheru/crud-test-mern.svg?branch=master)
+
 - Complete CRUD
 - Nodemon
 - PUG templating
