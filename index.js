@@ -31,6 +31,10 @@ app.listen(3000, ()=>{
     console.log('listening on 3000')
 })
 
+app.get('/test', (req, res) => {
+    res.send('<h2>Register</h2>');
+})
+
 app.get('/', (req, res)=>{
 
     db.collection('users').find().toArray()
