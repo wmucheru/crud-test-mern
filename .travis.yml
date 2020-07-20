@@ -2,10 +2,9 @@ language: node_js
 node_js: 
   - "10"
 
-sudo: required
-services: mongodb
-
-before_script: npm run dev & sleep 5
+script: 
+  - node index.js &
+  - npm test
 
 cache:
   directories
