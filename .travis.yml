@@ -5,7 +5,7 @@ node_js:
 sudo: required
 services: mongodb
 
-before_script: npm run dev
+before_script: npm run dev & sleep 5
 
 cache:
   directories
