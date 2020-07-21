@@ -8,6 +8,7 @@ const app = express()
 
 let db
 
+/*
 MongoClient.connect('mongodb://localhost:27017', {
     useUnifiedTopology: true,
     useNewUrlParser: true
@@ -17,7 +18,8 @@ MongoClient.connect('mongodb://localhost:27017', {
     }
 
     db = client.db('register')
-})  
+})
+*/
 
 app.use(express.static(path.join(__dirname, 'public')))
 
@@ -37,10 +39,12 @@ app.get('/test', (req, res) => {
 
 app.get('/', (req, res)=>{
 
+    /*
     db.collection('users').find().toArray()
         .then(result => {
             res.render('index', {users:result})
         })
+    */
 })
 
 app.post('/register', (req, res)=>{
